@@ -1,7 +1,7 @@
 # taskManagement
  Gestor de tareas
 
-Este es un proyecto de gestión de tareas con un formulario que . Permite crear, editar y ver tareas. 
+Este es un proyecto de gestión de tareas con un formulario que . Permite crear, editar y ver tareas, Para este proyecto se utilizo sqlite como gestor de bases de datos, por temas de portabilidad
 
 ## Requisitos previos
 
