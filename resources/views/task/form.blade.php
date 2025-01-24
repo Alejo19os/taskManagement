@@ -15,7 +15,7 @@
             <div class="input-group">
                 <span class="input-group-text"><i class="bi bi-pencil"></i></span>
                 <textarea type="text" name="description" class="form-control @error('description') is-invalid @enderror"
-                    value="{{ old('description', $task?->description) }}" id="description"
+                    value="{{ old('description') }}" id="description"
                     placeholder="Descripción de la tarea">
                 </textarea>
             </div>
@@ -27,7 +27,7 @@
             <div class="input-group">
                 <span class="input-group-text"><i class="bi bi-calendar-check"></i></span>
                 <input type="date" name="due_date" class="form-control @error('due_date') is-invalid @enderror"
-                    value="{{ old('due_date', $task?->due_date) }}" id="due_date" placeholder="Fecha de vencimiento">
+                    value="{{ old('due_date') }}" id="due_date" placeholder="Fecha de vencimiento">
             </div>
             {!! $errors->first('due_date', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>

@@ -73,6 +73,38 @@ class TaskController extends Controller
         return view('task.show', compact('task'));
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit($id): View
+    {
+        $task = Task::find($id);
+
+        return view('task.edit', compact('task'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Task $task): RedirectResponse
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'due_date' => 'required|date',
+        ]);
+
+        Task::create([
+            'user_id' => Auth::id(),
+            'title' => $request->title,
+            'description' => $request->description,
+            'due_date' => $request->due_date,
+        ]);
+
+
+        return Redirect::route('tasks.index')
+            ->with('success', 'Tarea actualizada exitosamente');
+    }
     
     public function markCompleted(Request $request, Task $task)
     {
