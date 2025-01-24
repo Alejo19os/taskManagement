@@ -13,7 +13,8 @@
 
                         <div class="form-group mb-4">
                             <label for="email" class="form-label">{{ __('Correo') }}</label>
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                             @error('email')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -22,7 +23,9 @@
 
                         <div class="form-group mb-4">
                             <label for="password" class="form-label">{{ __('Contraseña') }}</label>
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                            <input id="password" type="password"
+                                class="form-control @error('password') is-invalid @enderror" name="password" required
+                                autocomplete="current-password">
 
                             @error('password')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -36,7 +39,6 @@
                                     {{ __('Recordar Contraseña') }}
                                 </label>
                             </div>
-                            <a href="{{ route('password.request') }}" class="text-decoration-none">{{ __('¿Olvidaste tu contraseña?') }}</a>
                         </div>
 
                         <div class="d-grid gap-2">

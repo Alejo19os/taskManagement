@@ -16,7 +16,6 @@
                         </span>
 
                         <div class="float-right">
-                            <!-- Botón para abrir el modal -->
                             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#taskModal">
                                 {{ __('Crear nueva tarea') }}
                             </button>
@@ -25,15 +24,15 @@
                 </div>
 
                 @if ($message = Session::get('success'))
-                    <div class="alert alert-success m-4">
+                    <div class="alert alert-success m-4" id="success-alert">
                         <p>{{ $message }}</p>
                     </div>
                 @endif
 
                 <div class="card-body bg-white">
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover">
-                            <thead class="table-success">
+                        <table id="tasksTable" class="table table-striped table-hover">
+                            <thead class="table">
                                 <tr>
                                     <th>Título</th>
                                     <th>Descripción</th>
@@ -64,12 +63,10 @@
                     </div>
                 </div>
             </div>
-            {!! $tasks->withQueryString()->links() !!}
         </div>
     </div>
 </div>
 
-<!-- Modal para crear nueva tarea -->
 <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -88,6 +85,24 @@
 </div>
 
 <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        $('#tasksTable').DataTable({
+            language: {
+                url: "https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
+            },
+            order: [[2, 'asc']], 
+        });
+
+        var alertElement = document.getElementById('success-alert');
+        if (alertElement) {
+            setTimeout(function () {
+                alertElement.style.transition = "opacity 0.5s ease";
+                alertElement.style.opacity = "0"; 
+                setTimeout(() => alertElement.remove(), 500); 
+            }, 5000); 
+        }
+    });
+
     function confirmMarkCompleted(url, switchElement) {
         const isChecked = switchElement.checked;
         const confirmationMessage = isChecked
@@ -121,6 +136,5 @@
         }
     }
 </script>
-
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 @endsection

@@ -15,7 +15,8 @@
             <div class="input-group">
                 <span class="input-group-text"><i class="bi bi-pencil"></i></span>
                 <textarea type="text" name="description" class="form-control @error('description') is-invalid @enderror"
-                    value="{{ old('description', $task?->description) }}" id="description" placeholder="Descripción de la tarea">
+                    value="{{ old('description', $task?->description) }}" id="description"
+                    placeholder="Descripción de la tarea">
                 </textarea>
             </div>
             {!! $errors->first('description', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
@@ -36,3 +37,17 @@
         <button type="submit" class="btn btn-primary btn-sm">{{ __('Guardar') }}</button>
     </div>
 </div>
+
+<script>
+    document.getElementById('due_date').addEventListener('input', function () {
+        const inputDate = new Date(this.value);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); 
+
+        if (inputDate < today) {
+            alert("La fecha de vencimiento no puede ser anterior a hoy.");
+            this.value = ""; 
+        }
+    });
+
+</script>
